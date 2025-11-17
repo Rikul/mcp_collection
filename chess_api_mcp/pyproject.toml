@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "chess-api-mcp"
+version = "0.1.0"
+dependencies = [
+    "mcp",
+    "httpx"
+]
+
+[project.scripts]
+chess-api-mcp = "chess_api_mcp.server:main"
