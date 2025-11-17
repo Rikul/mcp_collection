@@ -1,0 +1,1 @@
+"""Chess API MCP Server."""
