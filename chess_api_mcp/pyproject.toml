@@ -12,3 +12,9 @@ dependencies = [
 
 [project.scripts]
 chess-api-mcp = "chess_api_mcp.server:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-dir]
+"" = "src"
