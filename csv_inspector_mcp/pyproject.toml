@@ -10,5 +10,8 @@ dependencies = [
     "mcp",
 ]
 
+[project.optional-dependencies]
+test = ["pytest"]
+
 [project.scripts]
 csv-inspector-mcp = "csv_inspector.server:main"

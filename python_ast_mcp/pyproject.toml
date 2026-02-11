@@ -10,5 +10,8 @@ dependencies = [
     "mcp",
 ]
 
+[project.optional-dependencies]
+test = ["pytest"]
+
 [project.scripts]
 python-ast-mcp = "python_ast.server:main"

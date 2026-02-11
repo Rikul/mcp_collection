@@ -58,6 +58,16 @@ for d in */pyproject.toml; do
     continue
   }
 
+  # If the server has unit tests, run them. Keep them basic + fast.
+  if [ -d "$ROOT/$srv/tests" ]; then
+    python -m pip install -U pytest >/dev/null
+    echo "pytest: $srv"
+    if ! pytest -q "$ROOT/$srv/tests"; then
+      fail=1
+      fails+="$srv:pytest\n"
+    fi
+  fi
+
   scripts=$(python - "$srv" <<'PY'
 import sys, tomllib, pathlib
 srv=sys.argv[1]

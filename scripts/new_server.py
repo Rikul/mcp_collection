@@ -27,11 +27,16 @@ dependencies = [
     "mcp",
 ]
 
+[project.optional-dependencies]
+test = ["pytest"]
+
 [project.scripts]
 {script_name} = "{package_name}.server:main"
 """
 
 TEMPLATE_SERVER = """from mcp.server.fastmcp import FastMCP
+
+# NOTE: keep most logic in small, testable functions.
 
 mcp = FastMCP(\"{display_name}\")
 
@@ -104,6 +109,7 @@ def main() -> None:
         die(f"Refusing to overwrite existing directory: {d}")
 
     (d / "src" / package_name).mkdir(parents=True)
+    (d / "tests").mkdir(parents=True)
 
     project_name = script_name  # good enough default
 
@@ -131,6 +137,18 @@ def main() -> None:
 
     (d / "src" / package_name / "server.py").write_text(
         TEMPLATE_SERVER.format(display_name=display_name),
+        encoding="utf-8",
+    )
+
+    # basic unit test
+    (d / "tests" / "test_basic.py").write_text(
+        (
+            "import asyncio\n\n"
+            f"from {package_name} import server as srv\n"
+            "\n\n"
+            "def test_ping_tool_returns_pong():\n"
+            "    assert asyncio.run(srv.ping()) == 'pong'\n"
+        ),
         encoding="utf-8",
     )
 
