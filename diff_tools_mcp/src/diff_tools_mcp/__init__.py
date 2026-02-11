@@ -1,0 +1,1 @@
+"""diff-tools-mcp package."""
