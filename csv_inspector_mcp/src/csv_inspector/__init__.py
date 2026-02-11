@@ -1,0 +1,1 @@
+"""csv-inspector-mcp package."""
