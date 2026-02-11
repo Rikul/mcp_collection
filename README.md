@@ -48,6 +48,21 @@ Validate the collection structure (missing READMEs, missing entrypoints, etc.):
 python3 scripts/validate_collection.py
 ```
 
+## Code Review
+
+A comprehensive code review has been conducted. See the following documents for details:
+
+- **[CODE_REVIEW.md](CODE_REVIEW.md)** - Comprehensive analysis of all issues found (843 lines)
+- **[ISSUES_SUMMARY.md](ISSUES_SUMMARY.md)** - Quick reference for creating GitHub issues
+
+**Key findings:**
+- 5 Critical issues (security, DoS risks)
+- 5 High-priority issues (test coverage, CI/CD, logging)
+- 7 Medium-priority issues (code quality, documentation)
+- 4 Low-priority issues (code style, minor improvements)
+
+**Overall Grade:** B- (Acceptable but needs improvement)
+
 ## Notes
 
 - Each server manages its own dependencies via its `pyproject.toml`.
