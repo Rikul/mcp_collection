@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Fast safety gate before pushing.
+# To skip once: SKIP_MCP_VALIDATE=1 git push
+
+if [ "${SKIP_MCP_VALIDATE:-}" = "1" ]; then
+  echo "[pre-push] SKIP_MCP_VALIDATE=1; skipping validation"
+  exit 0
+fi
+
+repo_root="$(git rev-parse --show-toplevel)"
+
+"$repo_root/scripts/validate_ci.sh"
