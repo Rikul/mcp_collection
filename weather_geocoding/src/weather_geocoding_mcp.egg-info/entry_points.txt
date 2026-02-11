@@ -1,2 +1,0 @@
-[console_scripts]
-weather-geocoding-mcp = weather_geocoding.server:main
