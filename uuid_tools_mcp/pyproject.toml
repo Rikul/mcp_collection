@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "uuid-tools-mcp"
+version = "0.1.0"
+description = "MCP server with small UUID utilities (generate, validate, inspect)."
+requires-python = ">=3.10"
+dependencies = [
+    "mcp",
+]
+
+[project.scripts]
+uuid-tools-mcp = "uuid_tools.server:main"
