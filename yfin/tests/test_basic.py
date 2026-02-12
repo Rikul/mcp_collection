@@ -1,20 +1,40 @@
-"""Basic tests for Yahoo Finance MCP server.
+from __future__ import annotations
 
-Note: These tests verify the functions exist and have basic structure.
-Full integration tests would require mocking the external yfinance API calls.
-"""
+import pandas as pd
+import pytest
 
+import importlib
 
-def test_mcp_server_initialized():
-    from yfin_mcp import server as srv
-    # Verify the mcp server is initialized
-    assert srv is not None
-    assert hasattr(srv, 'name')
+mod = importlib.import_module("yfin_mcp.server")
 
 
-def test_ticker_tools_registered():
-    from yfin_mcp import server as srv
-    # Verify tools are registered with the MCP server
-    tools = srv.get_tools() if hasattr(srv, 'get_tools') else []
-    # Even if we can't list tools, verify the server object exists
-    assert srv is not None
+class _Ticker:
+    def __init__(self, ticker: str):
+        self.ticker = ticker
+
+    def history(self, start=None, end=None, interval=None, auto_adjust=None):
+        idx = pd.DatetimeIndex([pd.Timestamp("2024-01-02")])
+        return pd.DataFrame(
+            {
+                "Open": [1.0],
+                "High": [2.0],
+                "Low": [0.5],
+                "Close": [1.5],
+                "Volume": [100],
+            },
+            index=idx,
+        )
+
+
+def test_get_ticker_data_monkeypatched(monkeypatch):
+    import yfinance as yf
+
+    monkeypatch.setattr(yf, "Ticker", _Ticker)
+    out = mod.get_ticker_data.fn("AAPL", last_n_days=1)
+    assert out["ticker"] == "AAPL"
+    assert out["candles"][0]["close"] == 1.5
+
+
+def test_validate_request_errors():
+    with pytest.raises(ValueError):
+        mod.get_ticker_data.fn("", last_n_days=1)
