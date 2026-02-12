@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "logfmt-tools-mcp"
+version = "0.1.0"
+requires-python = ">=3.10"
+dependencies = [
+    "mcp",
+]
+
+[project.optional-dependencies]
+test = ["pytest"]
+
+[project.scripts]
+logfmt-tools-mcp = "logfmt_tools.server:main"
