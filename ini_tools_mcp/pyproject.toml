@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ini-tools-mcp"
+version = "0.1.0"
+description = "MCP server with small INI parsing/editing utilities (no network)."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "mcp",
+]
+
+[project.scripts]
+ini-tools-mcp = "ini_tools_mcp.server:main"
