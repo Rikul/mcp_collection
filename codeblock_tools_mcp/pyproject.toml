@@ -10,5 +10,8 @@ dependencies = [
     "mcp",
 ]
 
+[project.optional-dependencies]
+test = ["pytest"]
+
 [project.scripts]
 codeblock-tools-mcp = "codeblock_tools.server:main"
