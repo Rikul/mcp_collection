@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "text-fingerprint-mcp"
+version = "0.1.0"
+description = "MCP server for small text fingerprinting utilities (hashes, line digests, normalization)."
+requires-python = ">=3.10"
+dependencies = [
+    "mcp",
+]
+
+[project.scripts]
+text-fingerprint-mcp = "text_fingerprint.server:main"

@@ -1,0 +1,1 @@
+"""Text fingerprint MCP server."""
