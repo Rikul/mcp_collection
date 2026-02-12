@@ -1,2 +1,0 @@
-[console_scripts]
-wikipedia-mcp = wikipedia_mcp.server:main
