@@ -5,13 +5,13 @@ Full integration tests would require mocking the external Wikipedia API calls.
 """
 
 
-def test_search_function_exists():
+def test_search_articles_function_exists():
     from wikipedia_mcp import server as srv
-    assert hasattr(srv, 'search')
-    assert callable(srv.search)
+    assert hasattr(srv, 'search_articles')
+    assert callable(srv.search_articles)
 
 
-def test_get_page_function_exists():
+def test_get_page_summary_function_exists():
     from wikipedia_mcp import server as srv
-    assert hasattr(srv, 'get_page')
-    assert callable(srv.get_page)
+    assert hasattr(srv, 'get_page_summary')
+    assert callable(srv.get_page_summary)

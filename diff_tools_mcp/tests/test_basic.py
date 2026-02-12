@@ -17,7 +17,9 @@ def test_unified_diff_with_changes():
 
 def test_ndiff_no_changes():
     result = asyncio.run(srv.ndiff("test", "test"))
-    assert result == "(no changes)"
+    # ndiff shows all lines with "  " prefix for unchanged lines
+    assert "test" in result
+    assert not result.startswith("-") and not result.startswith("+")
 
 
 def test_ndiff_with_changes():

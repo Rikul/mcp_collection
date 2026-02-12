@@ -11,7 +11,7 @@ def test_get_country_info_function_exists():
     assert callable(srv.get_country_info)
 
 
-def test_get_exchange_rate_function_exists():
+def test_get_exchange_rates_function_exists():
     from countries_currencies import server as srv
-    assert hasattr(srv, 'get_exchange_rate')
-    assert callable(srv.get_exchange_rate)
+    assert hasattr(srv, 'get_exchange_rates')
+    assert callable(srv.get_exchange_rates)

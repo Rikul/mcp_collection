@@ -5,19 +5,19 @@ Full integration tests would require mocking the external RSS feed calls.
 """
 
 
-def test_get_google_news_function_exists():
+def test_google_us_news_function_exists():
     from news_mcp import server as srv
-    assert hasattr(srv, 'get_google_news')
-    assert callable(srv.get_google_news)
+    assert hasattr(srv, 'google_us_news')
+    assert callable(srv.google_us_news)
 
 
-def test_get_guardian_news_function_exists():
+def test_guardian_us_news_function_exists():
     from news_mcp import server as srv
-    assert hasattr(srv, 'get_guardian_news')
-    assert callable(srv.get_guardian_news)
+    assert hasattr(srv, 'guardian_us_news')
+    assert callable(srv.guardian_us_news)
 
 
-def test_get_hacker_news_function_exists():
+def test_tech_hacker_news_function_exists():
     from news_mcp import server as srv
-    assert hasattr(srv, 'get_hacker_news')
-    assert callable(srv.get_hacker_news)
+    assert hasattr(srv, 'tech_hacker_news')
+    assert callable(srv.tech_hacker_news)

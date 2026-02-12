@@ -5,10 +5,10 @@ Full integration tests would require mocking the external API calls.
 """
 
 
-def test_get_weather_function_exists():
+def test_get_current_weather_function_exists():
     from weather_geocoding import server as srv
-    assert hasattr(srv, 'get_weather')
-    assert callable(srv.get_weather)
+    assert hasattr(srv, 'get_current_weather')
+    assert callable(srv.get_current_weather)
 
 
 def test_geocode_location_function_exists():

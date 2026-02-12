@@ -9,8 +9,8 @@ def test_path_stat_file(tmp_path: Path):
     p.write_text("hello")
     result = asyncio.run(srv.path_stat(str(p)))
     assert "type: file" in result
-    assert "size:" in result
-    assert "mtime:" in result
+    assert "size_bytes:" in result
+    assert "mtime_utc:" in result
 
 
 def test_path_stat_directory(tmp_path: Path):

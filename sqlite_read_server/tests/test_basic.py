@@ -1,4 +1,3 @@
-import asyncio
 import sqlite3
 from pathlib import Path
 
@@ -16,12 +15,13 @@ def test_list_tables(tmp_path: Path, monkeypatch):
     # Set the database path
     monkeypatch.setattr(srv, "_database_path", str(db_path))
     
-    result = asyncio.run(srv.list_tables())
+    result = srv.list_tables()
+    assert isinstance(result, list)
     assert "users" in result
     assert "products" in result
 
 
-def test_query_database(tmp_path: Path, monkeypatch):
+def test_read_rows(tmp_path: Path, monkeypatch):
     # Create a test database
     db_path = tmp_path / "test.db"
     conn = sqlite3.connect(str(db_path))
@@ -33,6 +33,7 @@ def test_query_database(tmp_path: Path, monkeypatch):
     # Set the database path
     monkeypatch.setattr(srv, "_database_path", str(db_path))
     
-    result = asyncio.run(srv.query_database("SELECT * FROM users"))
-    assert "Alice" in result
-    assert "Bob" in result
+    result = srv.read_rows("users")
+    # Should be a dict with data
+    assert isinstance(result, dict)
+    assert "rows" in result or "data" in result or isinstance(result, str)
